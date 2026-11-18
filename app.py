@@ -12,15 +12,15 @@ st.caption("Practice and prepare for your interviews")
 try:
     api_key = st.secrets["GROQ_API_KEY"]
 except (KeyError, FileNotFoundError):
-    st.error("API Key is missing. Add it in Advanced settings under Secrets.")
+    st.error("GROQ_API_KEY is missing. Add it under App Settings → Secrets.")
     st.stop()
 
 if not api_key:
-    st.error("GROQ_API_KEY is empty.")
+    st.error("GROQ_API_KEY cannot be empty.")
     st.stop()
 
 try:
     client = Groq(api_key=api_key)
 except Exception as exc:
-    st.error(f"Could not initialize Groq: {exc}")
+    st.error(f"Failed to initialize Groq: {exc}")
     st.stop()
